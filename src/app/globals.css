@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F7F6F3;
+    color: #1C1C1C;
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(61, 90, 108, 0.15);
+    color: #1C1C1C;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #F7F6F3; }
+  ::-webkit-scrollbar-thumb { background: #C8C4BC; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3D5A6C; }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-cormorant);
+  }
+
+  /* Glass card */
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 224, 219, 0.8);
+  }
+
+  .glass-dark {
+    background: rgba(28, 28, 28, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Section tag */
+  .section-tag {
+    @apply inline-flex items-center gap-2 text-[0.68rem] font-semibold tracking-[0.18em] uppercase text-accent;
+  }
+
+  .section-tag::before {
+    content: '';
+    @apply w-5 h-px bg-accent inline-block;
+  }
+
+  /* Btn primary */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white text-sm font-medium tracking-wide transition-all duration-300 hover:bg-[#2e4759] hover:shadow-glass rounded-sm;
+  }
+
+  /* Btn outline */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 border border-accent text-accent text-sm font-medium tracking-wide transition-all duration-300 hover:bg-accent hover:text-white rounded-sm;
+  }
+
+  /* Input */
+  .form-input {
+    @apply w-full bg-white border border-border rounded-sm px-4 py-3 text-sm text-ink placeholder-muted/60 outline-none transition-all duration-200 focus:border-accent focus:ring-1 focus:ring-accent/20;
+  }
+
+  .form-input.error {
+    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
+  }
+
+  /* Page layout */
+  .container-narrow {
+    @apply max-w-6xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Marquee */
+  .marquee { overflow: hidden; }
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll 28s linear infinite;
+  }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Product card hover */
+  .product-card-img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-card-img {
+    transform: scale(1.04);
+  }
+}
+
+@layer utilities {
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #3D5A6C, #5a8099);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, #3D5A6C, transparent) 1;
+  }
+}
